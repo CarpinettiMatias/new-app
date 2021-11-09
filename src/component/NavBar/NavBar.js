@@ -3,7 +3,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Nav, NavDropdown, Container} from 'react-bootstrap';
 import CartWidget from '../cartWidget/CartWidget';
 
-
 //ICONOS
 
 
@@ -32,6 +31,7 @@ const NavBar = () => {
                         <CartWidget/>
                     </Container>
                     </Navbar>
+
         </div>
     )
 }
