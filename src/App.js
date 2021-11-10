@@ -13,7 +13,7 @@ function App() {
       <section>
         <ItemListContainer  greeting='Hola Mundo'/>
 
-        <ItemCount/>
+        <ItemCount  stock='5'  initial='1'/>
       </section>
     </div>
   );

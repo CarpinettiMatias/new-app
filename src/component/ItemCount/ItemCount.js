@@ -1,47 +1,28 @@
+import { numberTypeAnnotation } from '@babel/types';
 import React, { useState } from 'react';
 import {Button} from 'semantic-ui-react';
 
 //css
 import './ItemCount.css';
 
-const ItemCount = ({stock = 10 , initial = 1, onAdd }) => {
+const ItemCount = ({stock , initial}) => {
 
-
-    const [itemStock , setItemStock] = useState(stock);
-    const [itemQuantity,setItemQuantity] = useState(initial);
-
-
-    const addQuantity = () => {
-        if( itemStock === 0){
-            alert('No hay mas stock')
-        }else{
-            setItemQuantity(itemQuantity + 1);
-            setItemStock(itemStock -1);
-        };
-    };
-    const subtractQuantity = () => {
-        if(itemQuantity === 0){
-            alert('No hay "-1" prendas')
-        }else{
-            setItemQuantity(itemQuantity - 1);
-            setItemStock( itemStock + 1);
-        };
-    };
-    const add = () => {
-        onAdd (itemQuantity);
-    };
-
-
+    const [counter, setCounter] = useState(initial);
+    //Saque los brakets porque me volvian los valores string
+    const addQuantity = () => (stock > counter) ? setCounter(counter + 1) : alert('No hay mas de este producto');
+    const subtractQuantity = () => (counter > 1) ? setCounter(counter - 1) : alert('No hay -1 productos');
+    
+    const onAdd = () => {alert(`Tenes ${counter} en el carrito`)};
 
     return (
-        <div className='ContainerCounter'>
+        <div className='ItemCount'>
             <h1>Productos</h1>
                 <div className='counter'>
                     <Button onClick={subtractQuantity} className="ui inverted pink button"> - </Button>
-                    <p>{itemQuantity}</p>
+                    <p>{counter}</p>
                     <Button onClick={addQuantity} className="ui inverted pink button"> + </Button>
                 </div>
-            <Button onClick={add} className="ui inverted pink button">Agregar al carrito</Button>
+            <Button onClick={onAdd} className="ui inverted pink button">Agregar al carrito</Button>
         </div>
     );
 };
