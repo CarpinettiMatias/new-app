@@ -1,4 +1,3 @@
-import { numberTypeAnnotation } from '@babel/types';
 import React, { useState } from 'react';
 import {Button} from 'semantic-ui-react';
 
@@ -11,7 +10,7 @@ const ItemCount = ({stock , initial}) => {
     //Saque los brakets porque me volvian los valores string
     const addQuantity = () => (stock > counter) ? setCounter(counter + 1) : alert('No hay mas de este producto');
     const subtractQuantity = () => (counter > 1) ? setCounter(counter - 1) : alert('No hay -1 productos');
-    
+
     const onAdd = () => {alert(`Tenes ${counter} en el carrito`)};
 
     return (

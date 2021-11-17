@@ -1,20 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
+import { getData } from '../helper/dataFunction';
+import { ItemList } from '../ItemList/ItemList';
 
 
-const ItemListContainer = ({greeting}) => {
-    const estilos = {
-        margin:'10px',
-        color:'pink',
-        fontSize: '50px'
-    }
+const ItemListContainer = () => {
+
+    const [ loading, setLoading ] = useState(false);
+    const [ product, setProduct ] = useState([]);
+
+
+
+    useEffect(() => {
+
+        setLoading(true)
+        getData()
+            .then((resp) => {
+                setProduct(resp);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => {
+                setLoading(false);
+            })
+    }, []);
+
+
 
     return (
-        <div className='greeting'>
-            <h2 className='text-center' style={estilos}>{greeting}</h2>
-            <hr />
-        </div>
-
-    );
-};
+        <>
+            {
+                loading
+                        ?  <div class="ui active inverted dimmer">
+                            <div class="ui large text loader">Cargando</div>
+                           </div>
+                        : <ItemList product={product}/>
+            }
+        </>
+    )
+}
 
 export default ItemListContainer;
