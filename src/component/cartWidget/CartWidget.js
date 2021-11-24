@@ -11,7 +11,7 @@ const CartWidget = () => {
 
     return (
         <div className='CartWidget'>
-            <Icon disabled name='cart'/>
+            <Icon disabled name='cart' className="circular inverted users icon"/>
         </div>
     )
 };

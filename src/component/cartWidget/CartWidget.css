@@ -1,5 +1,4 @@
 .CartWidget{
-    font-size: 23px;
-    border:gainsboro 2px solid;
-    border-radius: 30%;
+    font-size: 15px;
+    margin-left: 20px;
 }
