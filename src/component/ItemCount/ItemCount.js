@@ -1,16 +1,12 @@
-import React, { useState } from 'react';
-import { Button } from 'semantic-ui-react'
+import React from 'react';
 
 //css
 import './ItemCount.css';
 
-const ItemCount = ({stock=20 , initial}) => {
-    const [counter, setCounter] = useState(initial=1);
+const ItemCount = ({stock, counter, setCounter, onAdd}) => {
 
     const addQuantity = () => (stock > counter) ? setCounter(counter + 1) : alert('No hay mas de este producto');
-    const subtractQuantity = () => (counter > 1) ? setCounter(counter - 1) : alert('No hay -1 productos');
-
-    const onAdd = () => {alert(`Tenes ${counter} en el carrito`)};
+    const subtractQuantity = () => (counter > 0) ? setCounter(counter - 1) : console.log('No hay -1 productos');
 
     return (
         <div className='ItemCount'>
