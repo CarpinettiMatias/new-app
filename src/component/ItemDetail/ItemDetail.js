@@ -1,32 +1,36 @@
-import React,{ useState } from 'react';
+import React,{ useContext, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../CartContext/CartContext';
 import ItemCount from '../ItemCount/ItemCount'
 import './ItemDetail.css';
 
 const ItemDetail = ({ id, name, img, detail, price, stock}) => {
 
-    const navigate = useNavigate()
+
+    const { addCart, isInCart } = useContext(CartContext);
+
+
+    const navigate = useNavigate();
 
     const [counter, setCounter] = useState(0);
-    const [ viewAdd, setViewAdd ] = useState();
-    const onAdd = () => {
+    //const [ viewAdd, setViewAdd ] = useState(false);
+    
+    const handleOut = () => {
+        //Vuelve una navegacion anterior
+        navigate(-1)
+    }
+
+    const handleAdd = () => {
         if(counter > 0){
-            console.log(`Items agregados: `,{
+            addCart({
                 id,
                 name,
                 price,
                 counter
                 });
-
-            setViewAdd(true);
         };
     };
-
-    const handleOut = () => {
-        //Vuelve una navegacion anterior
-        navigate(-1)
-    }
     return (
         <>
         <div className='ItemDetail' key={id}>
@@ -43,15 +47,14 @@ const ItemDetail = ({ id, name, img, detail, price, stock}) => {
                 <p>{detail}</p>
                 <p>USD ${price}</p>
             {
-                !viewAdd
-                ?
-                <ItemCount
+                !isInCart(id)
+                ?  <ItemCount
                     stock={stock}
                     counter={counter}
                     setCounter={setCounter}
-                    onAdd={onAdd}/>
+                    onAdd={handleAdd}/>
                 : <>
-                    <Link to='/Cart' className='btn btn-secondary'>Terminar mi compra</Link>
+                    <Link to='/Cart' className='btn btn-secondary'>Ver Mi Carrito</Link>
                     <button className='btn btn-secondary' 
                             style={{width:'60px', borderRadius:'5px'}} 
                             onClick={handleOut}>

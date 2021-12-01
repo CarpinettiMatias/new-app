@@ -1,4 +1,6 @@
 .CartWidget{
     font-size: 15px;
-    margin-left: 20px;
+   margin-left: 20px;
+   display: flex;
+
 }

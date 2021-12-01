@@ -8,7 +8,7 @@ const ItemList = ({product = []}) => {
 
 
     return (
-        <Container className='text-center'>
+        <Container className='text-center' >
             <h3 className='text-center' style={{fontSize:'30px'}}>Productos</h3>
             <hr />
         <Row>

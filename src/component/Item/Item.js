@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-
+import Button from '@mui/material/Button';
 
 
 const Item = ({name, img, price, id}) => {
@@ -16,7 +16,9 @@ const Item = ({name, img, price, id}) => {
             <Card.Description>${ price}</Card.Description>
             </Card.Content>
             <Card.Content extra>
-            <Link to={`/detail/${id}`} className='btn btn-secondary'>Ver Detalle</Link>
+            <Button variant="outlined" to={`/detail/${id}`}   size="small">
+                <Link to={`/detail/${id}`} className='btn btn-'>Ver Detalle</Link>
+            </Button>
             </Card.Content>
         </Card>
     );
