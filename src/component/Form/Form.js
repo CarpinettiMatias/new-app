@@ -37,6 +37,7 @@ const Form = () => {
                 type="text"
                 placeholder='nombre' 
             />
+            {values.nombre.length < 3 && <span>Ingrese bien el nombre</span>}
             <input
                 onChange={handleInputChange}
                 name='apellido'

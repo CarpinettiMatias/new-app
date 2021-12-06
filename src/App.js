@@ -3,8 +3,6 @@ import NavBar from './component/NavBar/NavBar';
 import { BrowserRouter } from 'react-router-dom';
 import { Router } from './component/Router/Router';
 import { CartProvider } from './component/CartContext/CartContext';
-import { Modal } from 'react-bootstrap';
-
 
 
 function App() {
@@ -14,6 +12,7 @@ function App() {
         <CartProvider>
           <BrowserRouter>
                 <header>
+                  <badge />
                     <NavBar />
                     <Router />
                   </header>

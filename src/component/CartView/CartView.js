@@ -3,6 +3,9 @@ import { CartContext } from '../CartContext/CartContext';
 import ItemCartView from './ItemCartView';
 import { Link } from 'react-router-dom'
 
+
+
+
 const CartView = () => {
 
     const{cart, deleteCart } =useContext(CartContext)
@@ -17,7 +20,7 @@ const CartView = () => {
 
                         <section>
                             {
-                                cart.map((prod) => <ItemCartView prod={prod.id} {...prod} />)
+                                cart.map((prod) => <ItemCartView key={prod.id} {...prod} />)
                             }
                         </section>
                         <hr />

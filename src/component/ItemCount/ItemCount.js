@@ -11,8 +11,10 @@ const ItemCount = ({stock, counter, setCounter, onAdd}) => {
     return (
         <div className='ItemCount'>
                 <div className='counter'>
-                    <button onClick={subtractQuantity} className='btn btn-secondary'
-                                    style={{width:'40px',
+                    <button onClick={subtractQuantity} 
+                            className={counter === 0 ? 'btn btn-outline-danger' : 'btn btn-secondary'}
+                            disabled={counter === 0}
+                            style={{width:'40px',
                                     borderRadius:'15px',
                                     boxShadow:'1px 1px 2px gray'}}>
                             <div class="hidden content"></div>
@@ -22,16 +24,19 @@ const ItemCount = ({stock, counter, setCounter, onAdd}) => {
                     </button>
                 <p>{counter}</p>
                     <button onClick={addQuantity} className='btn btn-secondary'
-                                    style={{width:'40px',
+                            disabled={counter === stock}
+                            style={{width:'40px',
                                     borderRadius:'15px',
                                     boxShadow:'1px 1px 2px gray'}}>
-                            <div class="hidden content"></div>
+                           <div class="hidden content"></div>
                             <div class="visible content">
                                 <i class="plus icon"></i>
                             </div>
                     </button>
-                    <button onClick={onAdd} className='btn btn-secondary'
-                                    style={{width:'80px',
+                    <button onClick={onAdd} 
+                            className='btn btn-secondary'
+                            disabled={counter === 0}
+                            style={{width:'80px',
                                     borderRadius:'15px',
                                     boxShadow:'1px 1px 2px gray'}}>
                             <div class="hidden content"></div>

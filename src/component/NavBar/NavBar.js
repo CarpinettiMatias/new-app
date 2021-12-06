@@ -16,14 +16,14 @@ const NavBar = () => {
                 <Nav className="me-auto">
                 </Nav>
                 <Nav>
-                     <Nav.Link><Link to='/'>Home</Link></Nav.Link>
+                     <Nav.Link><Link style={{textDecoration: ' none'}} to='/'>Home</Link></Nav.Link>
                         <NavDropdown to='Products'title='Categories'>
                             <NavDropdown.Item><Link to='Products/Phone'>Phone</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to='Products/Computer'>Computer</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to='Products/Watch'>Watch</Link></NavDropdown.Item>
                         </NavDropdown>
                      <Nav.Link><Link to='/Contact'>Contact</Link></Nav.Link>
-                     <Nav.Link><Link to='cart'> <CartWidget/> </Link></Nav.Link>
+                     <Nav.Link><CartWidget/></Nav.Link>
                 </Nav>
             </Navbar.Collapse>
             </Container>
