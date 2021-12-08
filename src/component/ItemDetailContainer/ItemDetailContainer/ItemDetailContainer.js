@@ -1,7 +1,8 @@
+import { doc, getDoc } from 'firebase/firestore/lite';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import { getData } from '../../helper/dataFunction';
 import ItemDetail from '../../ItemDetail/ItemDetail';
+import { BD } from '../../firebase/firebaseconfig';
 
 
 const ItemDetailContainer = () => {
@@ -14,14 +15,22 @@ const ItemDetailContainer = () => {
 
     useEffect(() => {
         setLoading(true)
-        getData()
-            .then(resp => {
-                setItem( resp.find( prod => prod.id === Number(detailId)) )
+        
+        const docRef = doc(BD, 'product', detailId)
+        getDoc(docRef)
+            .then((doc) => {
+                setItem({
+                    id: doc.id,
+                    ...doc.data()
+                });
             })
             .finally(() => {
                 setLoading(false)
             })
-    },[]);
+
+
+
+    },[detailId]);
 
 
     return (
