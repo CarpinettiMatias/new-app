@@ -1,7 +1,6 @@
-import { collection, getDocs, query, where } from 'firebase/firestore/lite';
 import React, { useState, useEffect} from 'react';
 import { useParams } from 'react-router';
-import { BD } from '../firebase/firebaseconfig'
+import { getData } from '../helper/dataFunction';
 import ItemList from '../ItemList/ItemList';
 
 
@@ -15,28 +14,21 @@ const ItemListContainer = () => {
 
     useEffect(() => {
 
-        setLoading(true);
-
-        const productRef = collection(BD, 'product');
-
-        const q = catId
-                        ? query(productRef, where('category' , '==' , catId))
-                        : productRef ;
-
-        getDocs(q)
-            .then((collection) => {
-              const items = collection.docs.map((doc) => ({
-                  id: doc.id,
-                  ...doc.data()
-              }));
-              console.log(items);
-              setProduct(items);
+        setLoading(true)
+        getData()
+            .then((resp) => {
+                    if(!catId){
+                    setProduct(resp)
+                }else{
+                    setProduct( resp.filter( prod =>prod.category === catId))
+                }
+                })
+            .catch((error) => {
+                console.log(error);
             })
             .finally(() => {
                 setLoading(false);
-            });
-
-
+            })
     }, [catId]);
 
     return (
